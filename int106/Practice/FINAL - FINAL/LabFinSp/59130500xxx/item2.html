@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>591300500xxx</title>
+	<style type="text/css">
+	button{
+
+		font-size: 1.3em;
+	}
+	td{
+		font-size: 2em;
+		text-align: center;
+		width: 2em;
+		margin: 5px;
+		padding: 5px;
+	}
+	.slotWin{
+		width:75px;
+		height:60px;
+		background-color:Aquamarine;
+	}
+	.slotLose{
+		width:75px;
+		height:60px;
+		background-color:Salmon;
+	}
+	.lose{
+		background-color:red;
+	}
+	</style>
+</head>
+<body onload="">
+	<h1>simple roulette</h1>
+	<table border=1>
+		<tr id="row1">
+			<td class="slotLose" id="s0">0</td>
+			<td class="slotWin" id="s1"></td>
+			<td class="slotLose" id="s2"></td>
+		</tr>
+		<tr id="row2">
+			<td class="slotWin" id="s7"></td>
+			<td class="" id=""><button onclick="spinBall()">spin</button></td>
+			<td class="slotWin" id="s3"></td>
+		</tr>
+		<tr id="row3">
+			<td class="slotLose" id="s6"></td>
+			<td class="slotWin" id="s5"></td>
+			<td class="slotLose" id="s4"></td>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<p id="resultBloct">Result :<span id="result"></span></p>
+	<p id="winBlock">Win score :<span id="winPoint">0</span></p>
+	<p id="loseBlock">Lose score :<span id="losePoint">0</span></p>
+	<br>
+
+	<button onclick="checkBallPos();alert(position)">Check Ball</button>
+	<button onclick="moveSlot('s0','s1',1)">Move Slot</button>
+
+	<script>
+	winscore = 0;
+	losescore = 0;
+	slot = ["s0","s1","s2","s3","s4","s5","s6","s7"];
+	position = null;
+	
+	function checkBallPos(){
+
+	}
+	
+	function moveSlot(slot1,slot2,i){
+
+	}
+	
+	function spinBall(){
+
+	
+	}
+	function showResult(i){
+
+	}
+	
+	
+	
+	/*Hint Math.random() return number between 0 and 1
+			Math.floor(x) Returns x, rounded downwards to the nearest integer
+			Math.ceil(x) 	Returns x, rounded upwards to the nearest integer.
+			The setTimeout() method calls a function or evaluates an expression 
+			after a specified number of milliseconds.		
+			Math.pow(x, y) Return Value:A Number, representing the value of x to the power of y (x^y)
+	*/
+
+	</script>
+</body>
+</html>

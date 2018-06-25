@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>591300500xxx</title>
+	<style type="text/css">
+	button{
+		font-size: 2em;
+	}
+	td{
+		text-align: center;
+		width: 2em;
+		margin: 5px;
+		padding: 5px;
+	}
+	.lose{
+		background-color:red;
+	}
+	</style>
+</head>
+<body onload="newGame()">
+	<h1>simple Bingo</h1>
+	<table border=1>
+		<tr >
+			<td colspan="3" id="com">Bingo Book</td>
+		</tr>
+		<tr >
+			<td id="num1" ></td>
+			<td id="num2" ></td>
+			<td id="num3"></td>
+		</tr>
+	</table>
+	<br>
+	<button onclick="random()">random</button>
+	<br>
+	<p>result table</p>
+	<table border=1>
+		<tr >
+			<td id="res1"></td>
+			<td id="res2"></td>
+			<td id="res3"></td>
+			<td id="res4"></td>
+			<td id="res5"></td>
+			<td id="res6"></td>
+			<td id="res7"></td>
+			<td id="res8" class="lose"></td>
+			<td id="res9" class="lose"></td>
+			<td id="res10" class="lose"></td>
+		</tr>
+	</table>
+	<br>
+	<p><span id="winBlock"></span></p>
+
+	<button onclick="newGame()">New Game</button>
+	<script>
+	book = [];
+	numCollection = [];
+	
+	function newGame(){
+		book = [];
+		numCollection = [];
+		for(i=0;i<10;i++){
+			document.getElementById("res"+(i+1)).innerHTML = "";
+		}
+		document.getElementById("winBlock").innerHTML = "";
+		while(book.length <3){
+			ran = Math.floor(Math.random()*10);
+			if(checkDup(ran,book) == false){
+				book.push(ran);
+				document.getElementById("num"+(i+1)).innerHTML = book[i];
+				}
+			
+				
+		}
+}
+	function checkDup(num,arr){
+		for(i=0;i<arr.length;i++){
+				if(arr[i] == num){
+				return true;
+				}
+			}
+		return false;
+	}
+	
+	function random(){
+		while(numCollection.length <10){
+			ran = Math.floor(Math.random()*10);
+			if(checkDup(ran,numCollection) == false){
+				numCollection.push(ran);
+				document.getElementById("res"+(i+1)).innerHTML = numCollection[i];
+				}		
+		}
+		
+		if(checkWin() == true){
+		document.getElementById("winBlock").innerHTML = "You Win";
+		}
+		if(checkWin() == false){
+		document.getElementById("winBlock").innerHTML = "You lose";
+		}
+	}	
+	function checkWin(){
+		for(i=0;i<3;i++){
+			for(j=7;j<10;j++){
+			if(book[i] == numCollection[j])
+				return false;
+			}
+		
+		}
+		return true;
+	}
+	
+	
+	/*Hint Math.random() return number between 0 and 1
+			Math.floor(x) Returns x, rounded downwards to the nearest integer
+			Math.ceil(x) 	Returns x, rounded upwards to the nearest integer.*/
+
+	</script>
+</body>
+</html>

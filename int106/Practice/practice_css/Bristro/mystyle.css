@@ -1,0 +1,25 @@
+h1 {
+    text-align: center;
+    color: red;
+}
+
+h2 {
+    text-align: center;
+    color: red;
+}
+
+p {
+    text-align: center;
+    color: red;
+}
+
+h1, h2, p {
+    color: red;
+    text-align: center;
+}
+body {
+    background-color: Aquamarine;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+

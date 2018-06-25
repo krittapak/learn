@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>591300500xxx</title>
+	<style type="text/css">
+	button{
+		font-size: 2em;
+	}
+	td{
+		font-size: 2em;
+		text-align: center;
+		width: 2em;
+		margin: 5px;
+		padding: 5px;
+	}
+	.slotC1{
+		width:75px;
+		height:60px;
+		background-color:Aquamarine;
+	}
+	.slotC2{
+		width:75px;
+		height:60px;
+		background-color:Lavender;
+	}
+	.slotC3{
+		width:75px;
+		height:60px;
+		background-color:Salmon;
+	}
+	.lose{
+		background-color:red;
+	}
+	</style>
+</head>
+<body onload="">
+	<h1>simple slot machine</h1>
+	<table border=1>
+		<tr id="row1">
+			<td class="slotC1" id="s11"></td>
+			<td class="slotC2" id="s21"></td>
+			<td class="slotC3" id="s31"></td>
+		</tr>
+		<tr id="row2">
+			<td class="slotC1" id="s12"></td>
+			<td class="slotC2" id="s22"></td>
+			<td class="slotC3" id="s32"></td>
+		</tr>
+		<tr id="row3">
+			<td class="slotC1" id="s13"></td>
+			<td class="slotC2" id="s23"></td>
+			<td class="slotC3" id="s33"></td>
+		</tr>
+	</table>
+	<br>
+	<button onclick="spin(1)">spin1</button><button onclick="spin(2)">spin2</button><button onclick="spin(3)">spin3</button>
+	<br>
+	<p id="resultBloct">Result :<span id="result"></span></p>
+	<p id="winBlock">Win score :<span id="winPoint">0</span></p>
+	<p id="loseBlock">Lose score :<span id="losePoint">0</span></p>
+	<br>
+	<button onclick="reMatch()">Try again</button>
+
+
+	<script>
+	winscore = 0;
+	losescore = 0;
+	slotC1 = [];
+	slotC2 = [];
+	slotC3 = [];
+	
+
+	/*Hint Math.random() return number between 0 and 1
+			Math.floor(x) Returns x, rounded downwards to the nearest integer
+			Math.ceil(x) 	Returns x, rounded upwards to the nearest integer.*/
+
+	</script>
+</body>
+</html>

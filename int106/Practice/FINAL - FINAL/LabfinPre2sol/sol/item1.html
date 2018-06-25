@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>581300500xxx</title>
+	<style type="text/css">
+	button{
+		font-size: 2em;
+	}
+	td{
+		text-align: center;
+		width: 2em;
+		margin: 5px;
+		padding: 5px;
+	}
+	#rock{
+	//background-color:red;
+	}
+	</style>
+</head>
+<body>
+	<h1>Rock Scissors Paper</h1>
+	<table border=1>
+		<tr >
+			<td colspan="3" id="com">computer</td>
+		</tr>
+		<tr >
+			<td colspan="3" id="comdisplay">
+			<img id="compic" alt="computer side">
+			</td>
+		</tr>
+		<tr >
+			<td colspan="3" id="result">
+			--------------------------------
+			</td>
+		</tr>
+		<tr >
+			<td id="rock" onclick="playGame('rock')"><img src="res/rock.jpg" ></td>
+			<td id="scissors" onclick="playGame('scissors')"><img src="res/scissors.jpg" ></td>
+			<td id="paper" onclick="playGame('paper')"><img src="res/paper.jpg" ></td>
+		</tr>
+		<tr >
+			<td colspan="3">player</td>
+		</tr>
+	</table>
+	<br>
+	<p id="winBlock">Win score :<span id="winPoint">0</span></p>
+	<p id="loseBlock">Lose score :<span id="losePoint">0</span></p>
+	<p id="drawBlock">Draw score :<span id="drawPoint">0</span></p>
+	
+	
+	<script>
+	winscore = 0;
+	losescore = 0;
+	drawscore = 0;
+	function rematch(){
+	
+	
+	}
+	
+	function playGame(str){
+	if(str=="rock"){
+		document.getElementById("rock").style.backgroundColor = "lightblue";
+		document.getElementById("scissors").style.backgroundColor = "";
+		document.getElementById("paper").style.backgroundColor = "";
+		com = Math.floor(Math.random()*3);//note o rock, 1 scissors, 2 paper
+		if(com == 0){
+			document.getElementById("compic").src = "res/rock.jpg";
+			drawscore++;
+			document.getElementById("drawPoint").innerHTML = drawscore;
+			document.getElementById("result").innerHTML = "draw";
+		}
+		if(com == 1){
+			document.getElementById("compic").src = "res/scissors.jpg";
+			winscore++;
+			document.getElementById("winPoint").innerHTML = winscore;
+			document.getElementById("result").innerHTML = "win";
+		}
+		if(com == 2){
+			document.getElementById("compic").src = "res/paper.jpg";
+			losescore++;
+			document.getElementById("losePoint").innerHTML = losescore;
+			document.getElementById("result").innerHTML = "lose";
+		}
+	}
+	if(str=="scissors"){
+		document.getElementById("rock").style.backgroundColor = "";
+		document.getElementById("scissors").style.backgroundColor = "lightblue";
+		document.getElementById("paper").style.backgroundColor = "";
+		com = Math.floor(Math.random()*3);//note o rock, 1 scissors, 2 paper
+		if(com == 1){
+			document.getElementById("compic").src = "res/scissors.jpg";
+			drawscore++;
+			document.getElementById("drawPoint").innerHTML = drawscore;
+			document.getElementById("result").innerHTML = "draw";
+		}
+		if(com == 2){
+			document.getElementById("compic").src = "res/paper.jpg";
+			winscore++;
+			document.getElementById("winPoint").innerHTML = winscore;
+			document.getElementById("result").innerHTML = "win";
+		}
+		if(com == 0){
+			document.getElementById("compic").src = "res/rock.jpg";
+			losescore++;
+			document.getElementById("losePoint").innerHTML = losescore;
+			document.getElementById("result").innerHTML = "lose";
+		}
+	}	
+	if(str=="paper"){
+		document.getElementById("rock").style.backgroundColor = "";
+		document.getElementById("scissors").style.backgroundColor = "";
+		document.getElementById("paper").style.backgroundColor = "lightblue";
+		com = Math.floor(Math.random()*3);//note o rock, 1 scissors, 2 paper
+		if(com == 2){
+			document.getElementById("compic").src = "res/paper.jpg";
+			drawscore++;
+			document.getElementById("drawPoint").innerHTML = drawscore;
+			document.getElementById("result").innerHTML = "draw";
+		}
+		if(com == 0){
+			document.getElementById("compic").src = "res/rock.jpg";
+			winscore++;
+			document.getElementById("winPoint").innerHTML = winscore;
+			document.getElementById("result").innerHTML = "win";
+		}
+		if(com == 1){
+			document.getElementById("compic").src = "res/scissors.jpg";
+			losescore++;
+			document.getElementById("losePoint").innerHTML = losescore;
+			document.getElementById("result").innerHTML = "lose";
+		}
+	}
+	
+	}
+	
+		
+		
+	/*Hint Math.random() return number between 0 and 1
+			Math.floor(x) Returns x, rounded downwards to the nearest integer
+			Math.ceil(x) 	Returns x, rounded upwards to the nearest integer.*/
+
+	</script>
+</body>
+</html>

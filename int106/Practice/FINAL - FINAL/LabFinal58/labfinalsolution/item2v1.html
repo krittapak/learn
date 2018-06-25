@@ -1,0 +1,149 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>581300500106</title>
+	<style type="text/css">
+	body{
+		font-size: 2em;
+	}
+	button{
+		width: 100%;
+		font-size: 2em;
+	}
+	#display{
+		text-align: right;
+	}
+	td{
+		width: 2em;
+	}
+	</style>
+</head>
+<body>
+	<h1>Simple Calculator</h1>
+	<table border=1>
+		<tr >
+			<td colspan="5" id="ans">ans = 0</td>
+		</tr>
+		<tr >
+			<td colspan="5" id="display">0</td>
+		</tr>
+		<tr>
+			<td><button id="numpad1" onclick="clickNum(1)">1</button></td>
+			<td><button id="numpad2" onclick="clickNum(2)">2</button></td>
+			<td><button id="numpad3" onclick="clickNum(3)">3</button></td>
+			<td><button id="numpadPlus" onclick="clickPlus()">+</button></td>
+			<td><button id="numpadMinus" onclick="clickMinus()">-</button></td>
+		</tr>
+		<tr>
+			<td><button id="numpad4" onclick="clickNum(4)">4</button></td>
+			<td><button id="numpad5" onclick="clickNum(5)">5</button></td>
+			<td><button id="numpad6" onclick="clickNum(6)">6</button></td>
+			<td><button id="numpadMultiply" onclick="clickMultiply()">*</button></td>
+			<td><button id="numpadDivide" onclick="clickDivide()">/</button></td>
+		</tr>
+		<tr>
+			<td><button id="numpad7" onclick="clickNum(7)">7</button></td>
+			<td><button id="numpad8" onclick="clickNum(8)">8</button></td>
+			<td><button id="numpad9" onclick="clickNum(9)">9</button></td>
+			<td colspan="2"><button id="numpadEqual" onclick="clickEqual()">=</button></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><button id="numpad0" onclick="clickNum(0)">0</button></td>
+			<td></td>
+			<td colspan="2"><button id="numpadClear" onclick="clickClear()">C</button></td>
+		</tr>
+
+	</table>
+
+	<script>
+	dis = document.getElementById("display");
+	ans = document.getElementById("ans");
+	operation = 0;
+	secondNum = 0;
+	fristNum = 0;
+	sum = 0;
+
+	function clickClear(){
+		operation = 0;
+		secondNum = 0;
+		fristNum = 0;
+		sum = 0;
+		dis.innerHTML = 0;
+	}
+
+	function clickNum(num){
+		if(dis.innerHTML==0 && num==0){
+			return 0
+		}
+		else if(dis.innerHTML==0){
+			secondNum = num;
+			dis.innerHTML = secondNum;
+		}
+		else{
+			secondNum = secondNum.toString() + num.toString();
+			dis.innerHTML = secondNum;
+		}
+
+	}
+	function clickPlus(){
+		operation = "plus";
+		// set firstNum to be secondNum *don't forget to tranfrom secondNum to be a number
+		firstNum = secondNum;
+		//set secondNum as zero
+		secondNum = "";
+		//add string " + " to display
+		dis.innerHTML = "+"
+	}
+	function clickMinus(){
+		operation = "minus";
+		firstNum = secondNum;
+		secondNum = "";
+		dis.innerHTML = "-"
+	}
+	function clickMultiply(){
+		operation = "times";
+		firstNum = secondNum;
+		secondNum = "";
+		dis.innerHTML = "*"
+	}
+	function clickDivide(){
+		operation = "divide";
+		firstNum = secondNum;
+		secondNum = "";
+		dis.innerHTML = "/"
+	}
+
+	function clickEqual(){
+		if(operation==0){
+			clickClear();
+		}
+		if(operation=="plus"){
+			//set sum as fristNum plus secondNum *don't forget to tranfrom secondNum to be a number
+			sum =  parseInt(firstNum)+parseInt(secondNum);
+			//show sum value in ans box with pattren "ans ="  
+			ans.innerHTML = "ans = "+sum
+			//call fuction clickClear
+			clickClear();
+		}else if(operation=="minus"){
+			sum =  parseInt(firstNum)-parseInt(secondNum);
+			ans.innerHTML = "ans = "+sum
+			clickClear();
+		}else if(operation=="times"){
+			sum =  parseInt(firstNum)*parseInt(secondNum);
+			ans.innerHTML = "ans = "+sum
+			clickClear();
+
+		}else if(operation=="divide"){
+			sum =  parseFloat(firstNum)/parseFloat(secondNum);
+			ans.innerHTML = "ans = "+sum
+			clickClear();
+		}
+
+	}
+
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>581300500xxx</title>
+	<style>
+	body{
+		font-size: 2em;
+	}
+	td{
+		width: 2em;
+		height: 2em;
+	}
+	button{
+		width: 100%;
+		height: 100%;
+		font-size: 2em;
+	}
+	#win{
+		color: green;
+	}
+	#lose{
+		color: red;
+	}
+	</style>
+</head>
+<body>
+	<h1>Simple mine detector game</h1>
+	<p id="testRandom"></p>
+	<table>
+		<tr>
+			<td id="block1"><button onclick="checkBomb(1)">1</button></td>
+			<td id="block2"><button onclick="checkBomb(2)">2</button></td>
+		</tr>
+		<tr>
+			<td id="block3"><button onclick="checkBomb(3)">3</button></td>
+			<td id="block4"><button onclick="checkBomb(4)">4</button></td>
+		</tr>
+	</table>
+
+	<p id="win">Win score : <span id="winBox">0</span></p>
+	<p id="lose">Lose score : <span id="loseBox">0</span></p>
+	<script>
+	/*Hint Math.random() return number between 0 and 1
+			Math.floor(x) Returns x, rounded downwards to the nearest integer
+			Math.ceil(x) 	Returns x, rounded upwards to the nearest integer.*/
+	</script>
+
+</body>
+</html>

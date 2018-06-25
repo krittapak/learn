@@ -1,0 +1,36 @@
+body{
+	background-color: #001e3b;
+	font-family: 'Mitr', sans-serif;
+}
+.mlogo{
+	width: 100px;
+}
+.mtable{
+	border-radius: 10px;
+	border-color: white;
+	border-width: 80%;
+	color: white;
+	text-align: center;
+
+
+}
+a{
+	color: white;
+}
+#content{
+	width: 80%;
+	color: white;
+
+
+}
+#footer{
+	width: 100%;
+	background-color: white;
+	vertical-align: bottom;
+	text-align: center;
+	padding: 5px;
+}
+.mtype{
+	padding: 10px;
+	border-radius: 10px;
+}

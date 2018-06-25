@@ -1,0 +1,172 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>58130500009</title>
+	<style>
+		*{
+			color:#333;
+		}
+	</style>
+</head>
+<body>
+	<h1>KOCHI UNIVERSITY OF TECHNOLOGY</h1>
+	<h2>GRADUATE SCHOOL OF ENGINEERING</h2>
+	<!-- Form Start -->
+	<form action="TestServlet" name="appForm" method="post" onsubmit="return ConfirmForm()">
+	<h2>Special Scholarship Program (SSP) Application Form</h2>
+	<h4>Application No. <input type="number" name="AppNo"></h4>
+	<h3>IMPORTANT NOTE:</h3>
+	<P>Type or write in block letters.* Unclear or incomplete applications will not be considered.</P>
+	<hr>
+	<div>
+		<h4>When do you wish to start the program?</h4>
+		<label>April</label><input type="radio" name="startP" value="April">
+		<label>October</label><input type="radio" name="startP" value="April">
+		<input type="number" name="startY"> Year.
+	<div>
+	<hr>
+	<div>
+		<h4>Have you ever applied for SSP before?</h4>
+		<label>Yes</label><input type="radio" name="appliedB" value="Yes">
+		<label>No</label><input type="radio" name="appliedB" value="No">
+		<p>*If your answer is Yes, When ?
+		<input type="date" name="appliedT"></p>
+	</div>
+	<hr>
+	<div>
+		<h4>Paste a recent photo here ..</h4><input type="file" name="picture">
+	</div>
+	<hr>
+	<div>
+		<h4>Choose your gender ..</h4>
+		<div id="gender">
+			<label>Male</label><input type="radio" name="gender" value="Male">
+			<label>Female</label><input type="radio" name="gender" value="Female">
+		</div>
+		<h4>Choose your status ..</h4>
+		<div id="status">
+			<label>Single</label><input type="radio" name="status" value="Single">
+			<label>Married</label><input type="radio" name="status" value="Married">
+		</div>
+	</div>
+	<hr>
+	<div id="name">
+		<h4>Name</h4>
+		<input type="text" name="name">
+		<h6>* Write your SURNAME (followed by your first name) in CAPITAL letters here<h6>
+		<h6>** If you are Chinese, write your name in both English and Chinese.</h6>
+	</div>
+	<hr>
+	<div id="information">
+		<h4>Nationality</h4>
+		<input type="text" name="nation">
+		<h4>Date of Birth</h4>
+		<input type="date" name="birth">
+		<h4>Age (at time of enrolment)</h4>
+		<input type="number" name="age">
+	</div>
+	<hr>
+	<div id="plan">
+		<h4>What is your plan after completing Doctor’s program at KUT?</h4>
+		<ul style="list-style:none;">
+			<li>
+				<input type="radio" name="plan" value="0"><label>Return to your current occupation</label>
+			</li>
+			<li>
+				<input type="radio" name="plan" value="1"><label>Join Educational / Research Institute in your country</label>
+			</li>
+			<li>
+				<input type="radio" name="plan" value="2"><label>Work in Business enterprise in your country</label>
+			</li>
+			<li>
+				<input type="radio" name="plan" value="3"><label>Join Educational / Research Institute in Japan</label>
+			</li>
+			<li>
+				<input type="radio" name="plan" value="4"><label>Work in Business enterprise in Japan</label>
+			</li>
+			<li>
+				<input type="radio" name="plan" value="5"><label>Other.. please tell me your plan </label>
+				<input type="text" name="plan_other">
+			</li>
+		</ul>		
+		
+	</div>
+	<p>click submit button first, then confirm and reset button are enable.</p>
+	<input type="button" id="submitting" onclick="submitForm()" value="Submit">
+	<button id="confirmer" type="submit" style="display:none" disabled="true">Confirm</button>
+	<button id="reseter" type="reset" style="display:none" disabled="true">Reset</button>
+
+	</form>
+
+	<script>
+		var data = {
+				AppNo:"",
+				startP:"",
+				appliedB:"",
+				picture:"",
+				gender:"",
+				status:"",
+				name:"",
+				nation:"",
+				birth:"",
+				age:"",
+				plan:"",
+				plan_other:"",
+			}
+
+		function submitForm(){
+			console.log("submitting");
+			
+			data.AppNo = document.getElementsByName('AppNo')[0].value;
+			data.startP = checkValue('startP')
+			data.appliedB = checkValue('appliedB')
+			data.picture = document.getElementsByName('picture')[0].value;
+			data.gender = document.getElementsByName('gender')[0].value;
+			data.status = document.getElementsByName('status')[0].value;
+			data.name = document.getElementsByName('name')[0].value;
+			data.nation = document.getElementsByName('nation')[0].value;
+			data.birth = document.getElementsByName('birth')[0].value;
+			data.age = document.getElementsByName('age')[0].value;
+			data.plan = checkValue('plan')
+			data.plan_other = document.getElementsByName('plan_other')[0].value;
+			console.log(data);
+
+			alert('PLEASE COMFERM YOUR APPLICATIONs AGAIN. And Click Confirm to SEND this Application.');
+			document.getElementById('confirmer').setAttribute("style","display:inline-block");
+			document.getElementById('confirmer').removeAttribute("disabled");
+			document.getElementById('reseter').setAttribute("style","display:inline-block");
+			document.getElementById('reseter').removeAttribute("disabled");
+		}
+
+		function ConfirmForm(){
+			if( (data.AppNo != "" || data.AppNo != null) &&
+				(data.startP != "" || data.startP != null) &&
+				(data.appliedB != "" || data.appliedB != null) &&
+				(data.picture != "" || data.picture != null) &&
+				(data.gender != "" || data.gender != null) &&
+				(data.status != "" || data.status != null) &&
+				(data.name != "" || data.name != null) &&
+				(data.nation != "" || data.nation != null) &&
+				(data.birth != "" || data.birth != null) &&
+				(data.age != "" || data.age != null) &&
+				(data.plan != "" || data.plan != null) &&
+				(data.plan_other != "" || data.plan_other != null)
+				){
+				alert("Finish");
+				return true;
+			}
+			return false;
+		}
+
+		function checkValue(this_radio){
+				var radio = document.getElementsByName(this_radio);
+				for (var i = radio.length - 1; i >= 0; i--) {
+					if (radio[i].checked)
+						return radio[i].value;
+				};
+				return null;
+			};
+	</script>
+</body>
+</html>

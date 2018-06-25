@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>591300500xxx</title>
+	<style type="text/css">
+	button{
+		font-size: 1.5em;
+	}
+	td{
+		text-align: center;
+		width: 2em;
+		margin: 5px;
+		padding: 5px;
+	}
+	.lose{
+		background-color:red;
+	}
+	.tab-top{
+		background-color:silver;
+	}
+	.tab-bot{
+		background-color:gold;
+	}
+	#winBlock{
+		background-color:gold;
+		font-size:3em;
+	}
+	</style>
+</head>
+<body onload="newGame()">
+	<h1>Simple Loterry</h1>
+	<table border=1>
+		<tr class="tab-top" >
+			<td colspan="2">Your Budget</td>
+		</tr>
+		<tr class="tab-top" >
+			<td colspan="2" id="BudgetNote"></td>
+		</tr>
+		<tr >
+			<td colspan="2"></td>
+		</tr>
+		<tr class="tab-bot" >
+			<td colspan="2">Your lottery ticket</td>
+		</tr>
+		<tr class="tab-bot" >
+			<form onsubmit="return false;">
+			<td><input id="ticketNumber" type="text" maxlength="6" pattern="\d{6}" required></td>
+			<td><input id="buyButton"type="submit" onclick="buyTicket()" value="buy ticket"></td>
+			</form>
+		</tr>
+	</table>
+	<br>
+	<button onclick="drawNumber()" id="drawButton">Draw Number</button>
+	<p>Winner Number is :<span id="winBlock"></span></p>
+	<br>
+	<button onclick="checkPrize()" id="checkButton">Check Prize</button>
+	<br><br><br>
+	<button onclick="tryAgain()" id="tryButton">Try Again</button>
+	<script>
+	myTicket = 0;
+	winNumber = "";
+	budget = 1000;
+	prize = 0;
+	document.getElementById("BudgetNote").innerHTML = budget;
+	function buyTicket(){
+		myTicket = document.getElementById("ticketNumber").value;
+		document.getElementById("ticketNumber").disabled = true;
+		document.getElementById("buyButton").style.visibility = "hidden";
+		budget = budget - 100;
+		document.getElementById("BudgetNote").innerHTML = budget;
+	}
+	
+	function drawNumber(){
+		winNumber = "";
+		for(i=1;i<=6;i++){
+			winNumber += Math.floor(Math.random()*10);
+		}
+		document.getElementById("winBlock").innerHTML = winNumber;
+		document.getElementById("drawButton").style.display = "none";
+	}
+	
+	function checkPrize(){
+		my1 = myTicket%10;
+		my2 = myTicket%100;
+		my3 = myTicket%1000;
+		win1 = winNumber%10;
+		win2 = winNumber%100;
+		win3 = winNumber%1000;
+		
+		if(myTicket == winNumber){
+			alert("you won jackpot 10000000");
+			budget = budget + 10000000;
+			document.getElementById("BudgetNote").innerHTML = budget;
+		}
+		else if(my3 == win3){
+			alert("you won prize 100000");
+			budget = budget + 100000;
+			document.getElementById("BudgetNote").innerHTML = budget;
+		}
+		else if(my2 == win2){
+			alert("you won prize 10000");
+			budget = budget + 10000;
+			document.getElementById("BudgetNote").innerHTML = budget;
+		}
+		else if(my1 == win1){
+			alert("you won prize 1000");
+			budget = budget + 1000;
+			document.getElementById("BudgetNote").innerHTML = budget;
+		}
+		else{
+			alert("sorry you don't get any prize");
+		}
+		document.getElementById("checkButton").style.display = "none";
+	}
+	
+	function tryAgain(){
+		if(budget >= 100){
+			document.getElementById("winBlock").innerHTML ="";
+			document.getElementById("ticketNumber").value = "";
+			document.getElementById("ticketNumber").disabled = false;
+			document.getElementById("buyButton").style.visibility = "visible";
+			document.getElementById("drawButton").style.display = "initial";;
+			document.getElementById("checkButton").style.display = "initial";;		
+		}
+		else{
+			alert("You don't have enough money.")
+		}
+	
+	}
+	
+	</script>
+</body>
+</html>

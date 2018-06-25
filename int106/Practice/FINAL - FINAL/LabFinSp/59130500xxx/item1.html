@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>591300500xxx</title>
+	<style type="text/css">
+	button{
+		font-size: 1.5em;
+	}
+	td{
+		text-align: center;
+		width: 2em;
+		margin: 5px;
+		padding: 5px;
+	}
+	.lose{
+		background-color:red;
+	}
+	.tab-top{
+		background-color:silver;
+	}
+	.tab-bot{
+		background-color:gold;
+	}
+	#winBlock{
+		background-color:gold;
+		font-size:3em;
+	}
+	</style>
+</head>
+<body onload="newGame()">
+	<h1>Simple Loterry</h1>
+	<table border=1>
+		<tr class="tab-top" >
+			<td colspan="2">Your Budget</td>
+		</tr>
+		<tr class="tab-top" >
+			<td colspan="2" id="BudgetNote"></td>
+		</tr>
+		<tr >
+			<td colspan="2"></td>
+		</tr>
+		<tr class="tab-bot" >
+			<td colspan="2">Your lottery ticket</td>
+		</tr>
+		<tr class="tab-bot" >
+			<form onsubmit="return false;">
+			<td><input id="ticketNumber" type="text" maxlength="6" pattern="\d{6}" required></td>
+			<td><input id="buyButton"type="submit" onclick="buyTicket()" value="buy ticket"></td>
+			</form>
+		</tr>
+	</table>
+	<br>
+	<button onclick="drawNumber()" id="drawButton">Draw Number</button>
+	<p>Winner Number is :<span id="winBlock"></span></p>
+	<br>
+	<button onclick="checkPrize()" id="checkButton">Check Prize</button>
+	<br><br><br>
+	<button onclick="tryAgain()" id="tryButton">Try Again</button>
+	<script>
+	myTicket = 0;
+	winNumber = "";
+	budget = 1000;
+	prize = 0;
+	document.getElementById("BudgetNote").innerHTML=budget;
+
+	function buyTicket(){
+		//set myTicket to value of ticketNumber Element
+		myTicket=document.getElementById("ticketNumber");
+		//set disabled to ticketNumber Element
+		document.getElementById("ticketNumber").disabled=true;
+		//make buyButton Element to disappear
+		document.getElementById("buyButton").disabled=true;
+		//set budget to budget minus 100
+		budget=budget-100;
+		//make BudgetNote Element to show budget
+		document.getElementById("BudgetNote").innerHTML=budget;
+	}
+
+	function drawNumber(){
+		//set winNumber to ""
+		var winNumber="";
+		// for loop i from 1 to 6
+		for (var i = 0; i < 6; i++) {
+			winNumber+=Math.floor(Math.random() * 10);
+		}
+			//winNumber concatenate with random number 0-9
+
+		//make winBlock Element to show winNumber
+		document.getElementById("winBlock").innerHTML=winNumber;
+		//makedrawButton Element to disappear
+		document.getElementById("drawButton").disabled=true;
+		console.console.log(winNumber);
+	}
+
+	function checkPrize(){
+		//set my1 to myTicket Modulus with 10
+		my1=myTicket%10;
+		//set my2 to myTicket Modulus with 100
+		my2=myTicket%100;
+		//set my3 to myTicket Modulus with 1000
+		my3=myTicket%1000;
+		//set win1 to winNumber Modulus with 10
+		win1=winNumber%10;
+		//set win2 to winNumber Modulus with 100
+		win2=winNumber%100;
+		//set win3 to winNumber Modulus with 1000
+		win3=winNumber%1000;
+
+		//if myTicket equal to winNumber
+		if (myTicket==winNumber) {
+			//alert message "you won jackpot 10000000"
+			alert(budget+10000000);
+			//set budget to budget plus 10000000
+			budget=budget+10000000;
+			//make BudgetNote Element to show budget
+			document.getElementById("BudgetNote").innerHTML=budget;
+		}
+
+
+		//else if my3 equal to win3
+		else if (my3==win3) {
+			//alert message "you won jackpot 100000"
+			alert("you won jackpot 100000");
+			//set budget to budget plus 100000
+			budget=budget+100000;
+			//make BudgetNote Element to show budget
+			document.getElementById("BudgetNote").innerHTML=budget;
+		}
+
+		//else if my2 equal to win2
+		else if (my2==win2) {
+			//alert message "you won jackpot 10000"
+			alert("you won jackpot 100000");
+			//set budget to budget plus 10000
+			budget=budget+100000;
+			//make BudgetNote Element to show budget
+			document.getElementById("BudgetNote").innerHTML=budget;
+			}
+		//else if my1 equal to win1
+		else if (my3==win3) {
+			//alert message "you won jackpot 1000"
+			alert("you won jackpot 100");
+			//set budget to budget plus 1000
+			budget=budget+100;
+			//make BudgetNote Element to show budget
+			document.getElementById("BudgetNote").innerHTML=budget;
+			}
+		//else
+		else {
+			alert("sorry you don't get any prize");
+		}
+			//alert message "sorry you don't get any prize"
+
+		//set disabled to checkButton Element
+		document.getElementById("checkButton").disabled=true;
+		}
+
+	function tryAgain(){
+		// if budget more than or equal 100
+		if (budget >= 100) {
+			//make winBlock Element to show ""
+			document.getElementById("winBlock").innerHTML="";
+			//make ticketNumber Element value to ""
+			document.getElementById("ticketNumber").value="";
+			//unset disabled to ticketNumber Element
+			document.getElementById("ticketNumber").disabled=false;
+			//make buyButton Element to show
+			document.getElementById("buyButton").disabled=false;
+			//make drawButton Element to show
+			document.getElementById("drawButton").disabled=false;
+			//make checkButton Element	to show
+			document.getElementById("checkButton").disabled=false;
+		}else{
+			alert("You don't have enough money.");
+		}
+
+		//else
+			//alert message "You don't have enough money."
+
+
+	}
+
+	</script>
+</body>
+</html>
