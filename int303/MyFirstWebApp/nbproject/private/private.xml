@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/src/java/sit/int303/first/model/PrimeNumber.java</file>
-            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/src/java/sit/int303/first/servlet/SimpleCalculatorServlet.java</file>
-            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/src/java/sit/int303/first/servlet/PrimeNumberServlet.java</file>
-            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/web/index.html</file>
-            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/web/SimpleCalculatorView.jsp</file>
-            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/web/PrimeNumberView.jsp</file>
-            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/src/java/sit/int303/first/servlet/VerySimpleCalculatorServlet.java</file>
-            <file>file:/C:/Users/INT303/Documents/NetBeansProjects/MyFirstWebApp/web/CalculatorForm.html</file>
+            <file>file:/C:/Users/INT303/Desktop/learn/int303/MyFirstWebApp/src/java/sit/int303/first/servlet/ProductListServlet.java</file>
+            <file>file:/C:/Users/INT303/Desktop/learn/int303/MyFirstWebApp/web/WEB-INF/products.txt</file>
+            <file>file:/C:/Users/INT303/Desktop/learn/int303/MyFirstWebApp/web/ProductList.jsp</file>
+            <file>file:/C:/Users/INT303/Desktop/learn/int303/MyFirstWebApp/src/java/sit/int303/mockup/model/ProductMockup.java</file>
         </group>
     </open-files>
 </project-private>

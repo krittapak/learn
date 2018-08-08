@@ -16,19 +16,22 @@
     <body>
         <div class="container">
         <h1>ProductList</h1>
-        <table class="table">
+        <table class="table table-hover table-dark">
             <thead>
+                <th>Picture</th>
                 <th>No</th>
                 <th>Product Code</th>
                 <th>Product Name</th>
                 <th>Product Line</th>
                 <th>Scale</th>
                 <th>Price</th>
+                
             </thead>
             <tbody> 
             <c:forEach items="${products}" var="p" varStatus="vs">
                 <tr>
-                <td>${vs.count}</td>
+                 <td><img src="model-images/${p.productCode}.jpg" width="120"/></td>
+                 <td>${vs.count}</td>
                  <td>${p.productCode}</td>
                  <td>${p.productName}</td>
                  <td>${p.productLine}</td>
