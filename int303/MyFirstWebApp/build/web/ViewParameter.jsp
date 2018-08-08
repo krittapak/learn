@@ -11,10 +11,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Subject</title>
-        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+
 
     </head>
     <body>
+        <div class="container">
         <h1>Favorite Subject</h1>
         <form action="TestRequestParam" method="post">
             Your Student Id:
@@ -28,7 +31,7 @@
             <input type="checkbox" value="Database Administrator" name="subjects"/>Database Administrator<br/>
             <input type="checkbox" value="Computer Security" name="subjects"/>Computer Security<br/>
             <input type="checkbox" value="Software Process" name="subjects"/>Software Process<br/>
-            <input type="submit"/>
+            <input type="submit" class="btn btn-primary"/>
         </form>
         <hr/>
         <table>
@@ -48,7 +51,8 @@
                     </c:forEach>
                 </td>
             </tr>
-            
+
         </table>
+        </div>
     </body>
 </html>
