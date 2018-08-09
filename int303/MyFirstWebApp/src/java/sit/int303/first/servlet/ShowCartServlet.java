@@ -7,20 +7,20 @@ package sit.int303.first.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import sit.int303.first.model.LineItem;
 import sit.int303.first.model.ShoppingCart;
-import sit.int303.mockup.model.Product;
-import sit.int303.mockup.model.ProductMockup;
 
 /**
  *
  * @author INT303
  */
-public class AddItemToCartServlet extends HttpServlet {
+public class ShowCartServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,17 +33,21 @@ public class AddItemToCartServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       HttpSession session=request.getSession(true);
-       ShoppingCart cart=(ShoppingCart)session.getAttribute("cart");
-        if (cart==null) {
-            cart=new ShoppingCart();
-            session.setAttribute("cart", cart);
+        HttpSession session = request.getSession(false);
+
+        if (session != null) {
+            ShoppingCart cart = (ShoppingCart)session.getAttribute("cart");
+            if (cart != null) {
+                List<LineItem> lines=cart.getLineItems();
+                request.setAttribute("cart",cart);
+                getServletContext().getRequestDispatcher("/ShowCart.jsp").forward(request, response);
+                
+            } else {
+            response.sendRedirect("ProductList");
         }
-        String productCode=request.getParameter("productCode");
-        Product p=ProductMockup.getProduct(productCode);
-        cart.add(p);
-        //getServletContext().getRequestDispatcher("/ProductList").forward(request, response);
-        response.sendRedirect("ProductList");
+        } else {
+            response.sendRedirect("ProductList");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

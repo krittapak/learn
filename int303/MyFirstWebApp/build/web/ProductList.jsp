@@ -21,7 +21,21 @@
     <body>
         <div class="container">
 
-            <h1>ProductList</h1>
+
+
+            <table class="table">
+                <tr>
+                    <td><h1>ProductList</h1></td>
+                    <td>
+                        <a href="ShowCart">
+                        <button type="button" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart : ${cart.totalQuantity}
+                        </button> 
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <hr/>
             <table class="table table-bordered table-hover" id="example" width="100%">
                 <thead>
                 <th>Picture</th>
@@ -44,8 +58,12 @@
                             <td>${p.productScale}</td>
                             <td>${p.msrp}</td>
                             <td>
-                                <a href="AddItemToCart?productCode=${p.productCode}">
-                                    <input type="button" value="Add to Cart"/>
+                                <form action="AddItemToCart" method="post">
+                                    <input type="hidden" value="${p.productCode}" name="productCode">
+                                    <input type="submit" value="Add To Cart"/>
+                                </form>
+                                <a href="AddItemToCart?productCode=${p.productCode}"  class="btn btn-info btn-md"><span class="glyphicon glyphicon-plus-sign"></span> Add</a>
+
                             </td>
                         </tr>
                     </c:forEach>
