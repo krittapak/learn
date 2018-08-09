@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     <body>
         <div class="container">
-            <
+
             <h1>ProductList</h1>
-            <table class="table table-hover table-dark" id="example" width="100%">
+            <table class="table table-bordered" id="example" width="100%">
                 <thead>
                 <th>Picture</th>
                 <th>No</th>
