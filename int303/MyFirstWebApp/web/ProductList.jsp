@@ -22,7 +22,7 @@
         <div class="container">
 
             <h1>ProductList</h1>
-            <table class="table table-bordered" id="example" width="100%">
+            <table class="table table-bordered table-hover" id="example" width="100%">
                 <thead>
                 <th>Picture</th>
                 <th>No</th>

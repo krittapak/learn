@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="container">
-        <h1>Prime Number Application!!</h1>
+        <h1>Prime Number Application ${pn}!!</h1>
         <form action="PrimeNumberServlet" method="post" class="form-control">
             Please enter number:
             <input type="number" required min="2" name="number"/>
