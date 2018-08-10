@@ -66,6 +66,7 @@ public final class Header_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("<table class=\"table\">\n");
       out.write("    <tr>\n");
+      out.write("        <td><a href=\"index.html\" title=\"Back to home\"><img class=\"rounded\" src=\"logo-256-transp.png\" width=\"120px\"/></a></td>\n");
       out.write("        <td><h1>");
       out.write((java.lang.String) org.apache.jasper.runtime.PageContextImpl.evaluateExpression("${param.title}", java.lang.String.class, (PageContext)_jspx_page_context, null));
       out.write("</h1></td>\n");
