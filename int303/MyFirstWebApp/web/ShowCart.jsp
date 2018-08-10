@@ -33,9 +33,18 @@
                                 <td>${s.getQuantity()}</td>
                             </tr>
                         </c:forEach>
+
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <table class="table table-bordered table-hover">
                         </tr>
-                        <td colspan="3">${cart.getTotalPrice()}</td>
+                        <td>Total Quantity</td>
                         <td>${cart.getTotalQuantity()}</td>
+                        <td>Total Price</td>
+                        <td colspan="3">${cart.getTotalPrice()}</td>
                         </tr>
                     </table>
                 </div>
