@@ -21,12 +21,14 @@
                     <table class="table table-bordered table-hover">
                         <tr>
                             <td>No.</td>
+                            <td>Code</td>
                             <td>Product</td>
                             <td>Price</td>
                             <td>Quantity</td>
                         </tr>
                         <c:forEach items="${cart.getLineItems()}" var="s" varStatus="sp">
                             <tr>  
+                                <td>${sp.count}</td>
                                 <td>${s.getProduct().getProductCode()}</td>
                                 <td>${s.getProduct().getProductName()}</td>
                                 <td>${s.getSalePrice()}</td>

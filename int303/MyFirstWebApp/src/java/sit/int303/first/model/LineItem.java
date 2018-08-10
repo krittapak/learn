@@ -5,13 +5,14 @@
  */
 package sit.int303.first.model;
 
+import java.io.Serializable;
 import sit.int303.mockup.model.Product;
 
 /**
  *
  * @author INT303
  */
-public class LineItem {
+public class LineItem implements Serializable{
     private Product product;
     private double salePrice;
     private int quantity;

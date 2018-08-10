@@ -42,12 +42,9 @@ public class ShowCartServlet extends HttpServlet {
                 request.setAttribute("cart",cart);
                 getServletContext().getRequestDispatcher("/ShowCart.jsp").forward(request, response);
                 
-            } else {
-            response.sendRedirect("ProductList");
-        }
-        } else {
-            response.sendRedirect("ProductList");
-        }
+            }
+        } 
+        response.sendError(HttpServletResponse.SC_BAD_REQUEST,"Session Time Out ... Try Again");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
