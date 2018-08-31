@@ -25,12 +25,6 @@
                             <div class="form-group">
                                 <label for="exampleFormControlSelect1">Select Color</label>
                                 <select class="form-control" name="bgColor" id="exampleFormControlSelect1">
-
-                                
-
-
-
-
                                 <option type="radio" name="bgColor" value="red" style="background-color:red;color: white;" ${cookie.bgColor.value == "red" ? "selected" : ""}>red</option>
                                 <option type="radio" name="bgColor" value="yellow" style="background-color:yellow;color: white;" ${cookie.bgColor.value == "yellow" ? "selected" : ""}>yellow</option>
                                 <option type="radio" name="bgColor" value="green" style="background-color:green;color: white;" ${cookie.bgColor.value == "green" ? "selected" : ""}>green</option>
