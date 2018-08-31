@@ -41,19 +41,19 @@
                             <tbody> 
                             <c:forEach items="${products}" var="p" varStatus="vs">
                                 <tr>
-                                    <td><img src="model-images/${p.productCode}.jpg" width="120"/></td>
+                                    <td><img src="model-images/${p.productcode}.jpg" width="120"/></td>
                                     <td>${vs.count}</td>
-                                    <td><a href="GetProduct?productCode=${p.productCode}">${p.productCode}</a></td>
-                                    <td>${p.productName}</td>
-                                    <td>${p.productLine}</td>
-                                    <td>${p.productScale}</td>
+                                    <td><a href="GetProduct?productCode=${p.productcode}">${p.productcode}</a></td>
+                                    <td>${p.productname}</td>
+                                    <td>${p.productline.productline}</td>
+                                    <td>${p.productscale}</td>
                                     <td>${p.msrp}</td>
                                     <td>
                                         <form action="AddItemToCart" method="post">
-                                            <input type="hidden" value="${p.productCode}" name="productCode">
+                                            <input type="hidden" value="${p.productcode}" name="productCode">
                                             <input type="submit" value="Add To Cart"/>
                                         </form>
-                                        <a href="AddItemToCart?productCode=${p.productCode}"  class="btn btn-info btn-md"><span class="glyphicon glyphicon-plus-sign"></span> Add</a>
+                                        <a href="AddItemToCart?productCode=${p.productcode}"  class="btn btn-info btn-md"><span class="glyphicon glyphicon-plus-sign"></span> Add</a>
 
                                     </td>
                                 </tr>
