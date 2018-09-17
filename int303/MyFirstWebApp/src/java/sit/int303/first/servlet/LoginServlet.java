@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
             CustomerJpaController cumtomerJpaCtrl = new CustomerJpaController(utx, emf);
             Customer c = cumtomerJpaCtrl.findCustomer(Integer.valueOf(userName));
             if (c != null) {
-                if (password.equals(c.getContactfirstname())) {
+                if (password.equals(c.getContactfirstname().trim())) {
                     request.getSession().setAttribute("user", c);
                     getServletContext().getRequestDispatcher("/index.html").forward(request, response);
                     return;

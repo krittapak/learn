@@ -32,7 +32,8 @@ public class ProductListServlet extends HttpServlet {
     @Resource
     UserTransaction utx;
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * Processes requests for both HTTP <code>GE
+     * T</code> and <code>POST</code>
      * methods.
      *
      * @param request servlet request
