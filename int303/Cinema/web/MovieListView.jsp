@@ -15,10 +15,10 @@
     <tbody>
     <c:forEach var="m" items="${MoviesList}">
       <tr>
-        <td>${m.movieid}</td>
-        <td>${m.moviename}</td>
-        <td>${m.branch}</td>
-        <td>${m.showtime}</td>
+        <td>${m.Movieid}</td>
+        <td>${m.Moviename}</td>
+        <td>${m.Branch}</td>
+        <td>${m.Showtime}</td>
       
       </tr>
       </c:forEach>

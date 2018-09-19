@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-12">
                     <a href="MoviesList"><button type="button" class="btn btn-primary" >Movies List</button></a>
-                    <a href="Ticket"><button type="button" class="btn btn-secondary">Secondary</button></a>
+                    <a href="Ticket"><button type="button" class="btn btn-secondary">Ticket</button></a>
                     <a href="#"><button type="button" class="btn btn-success">Success</button></a>
                 </div>
             </div>

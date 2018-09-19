@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cinema.controller;
+package servlet;
 
-import cinema.jpa.controller.UsersJpaController;
-import cinema.jpa.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -16,19 +16,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
+import jpa.controller.UsersJpaController;
+import jpa.controller.exceptions.RollbackFailureException;
+import model.Users;
 
 /**
  *
  * @author Krittapak
  */
-public class LoginServlet extends HttpServlet {
-    @PersistenceUnit(unitName = "CinemaPU")
-    EntityManagerFactory utx;
-    
+public class RegisterServlet extends HttpServlet {
+
+    @PersistenceUnit(unitName = "TryPU")
+    EntityManagerFactory emf;
+
     @Resource
-    UserTransaction psw;
+    UserTransaction utx;
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -41,28 +45,30 @@ public class LoginServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String userid = request.getParameter("userid");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
-        
-        if (userid != null && password != null) {
-            UsersJpaController user =new UsersJpaController(psw, utx);
-            Users u=user.findUsers(userid);
+        String fname = request.getParameter("fname");
+
+        if (userid != null && username != null && password != null && fname != null) {
             
-            if (u != null) {
-                String passwordDB=u.getPassword();
-                if (password.equals(passwordDB)) {
-                    request.getSession().setAttribute("LoggedIn", u);
-                    response.sendRedirect("Ticket");
-                    return;
-                }else{
-                    request.setAttribute("message","Is Invalid");
-                    getServletContext().getRequestDispatcher("/LoginView.jsp").forward(request, response);
-                }
+            Users us = new Users();
+            us.setName(fname);
+            us.setPassword(password);
+            us.setUserid(userid);
+            us.setUsername(username);
+            UsersJpaController usjpa = new UsersJpaController(utx, emf);
+            try {
+                usjpa.create(us);
+            } catch (RollbackFailureException ex) {
+                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception ex) {
+                Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            request.setAttribute("message","Is Invalid");
-            getServletContext().getRequestDispatcher("/LoginView.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/index.html").forward(request, response);
         }
-        getServletContext().getRequestDispatcher("/LoginView.jsp").forward(request, response);
-//             
+        
+        getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

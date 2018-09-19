@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cinema.controller;
+package servlet;
 
-import cinema.jpa.controller.UsersJpaController;
-import cinema.jpa.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.annotation.Resource;
@@ -16,19 +14,19 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
+import jpa.controller.UsersJpaController;
+import model.Users;
 
 /**
  *
  * @author Krittapak
  */
 public class LoginServlet extends HttpServlet {
-    @PersistenceUnit(unitName = "CinemaPU")
-    EntityManagerFactory utx;
-    
-    @Resource
-    UserTransaction psw;
+@PersistenceUnit(unitName = "TryPU")
+EntityManagerFactory emf;
+@Resource
+UserTransaction utx;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,29 +38,49 @@ public class LoginServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userid = request.getParameter("userid");
-        String password = request.getParameter("password");
-        
-        if (userid != null && password != null) {
-            UsersJpaController user =new UsersJpaController(psw, utx);
-            Users u=user.findUsers(userid);
-            
-            if (u != null) {
-                String passwordDB=u.getPassword();
-                if (password.equals(passwordDB)) {
-                    request.getSession().setAttribute("LoggedIn", u);
-                    response.sendRedirect("Ticket");
-                    return;
-                }else{
-                    request.setAttribute("message","Is Invalid");
-                    getServletContext().getRequestDispatcher("/LoginView.jsp").forward(request, response);
-                }
+//            String userid = request.getParameter("userid");
+//            String password = request.getParameter("password");
+//            
+//        if (userid != null && password != null) {
+//           UsersJpaController ujpa=new UsersJpaController(utx, emf);
+//           Users us =ujpa.findUsers(userid);
+//            if (us != null) {
+//                String pas=us.getPassword();
+//                if (password.equals(pas)) {
+//                    request.getSession().setAttribute("users", us);
+//                    response.sendRedirect("index.html");
+//                    return;
+//                }
+//                
+//                getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+//            }
+//            
+//            
+//        }  
+//        getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+//        
+//        
+//        
+//    }
+    String userid = request.getParameter("userid");
+    String password = request.getParameter("password");
+    
+    if( userid != null && password != null){
+        UsersJpaController userJpa = new UsersJpaController(utx,emf);
+        Users user = userJpa.findUsers(userid);
+        if(user!=null){
+            String passwordDB = user.getPassword();
+            if(passwordDB.equals(password)){
+                request.getSession().setAttribute("Login", user);
+                getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+                return;
             }
-            request.setAttribute("message","Is Invalid");
-            getServletContext().getRequestDispatcher("/LoginView.jsp").forward(request, response);
         }
-        getServletContext().getRequestDispatcher("/LoginView.jsp").forward(request, response);
-//             
+        getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
+        
+    }
+    
+    getServletContext().getRequestDispatcher("/Login.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

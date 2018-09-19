@@ -3,12 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cinema.controller;
+package servlet;
 
-import cinema.jpa.controller.UsersJpaController;
-import cinema.jpa.model.Users;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
@@ -16,53 +15,37 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
+import jpa.controller.MoviesListJpaController;
+import model.MoviesList;
 
 /**
  *
  * @author Krittapak
  */
-public class LoginServlet extends HttpServlet {
-    @PersistenceUnit(unitName = "CinemaPU")
-    EntityManagerFactory utx;
-    
-    @Resource
-    UserTransaction psw;
+public class MovieListServlet extends HttpServlet {
+@PersistenceUnit(unitName = "TryPU")
+EntityManagerFactory emf;
+
+@Resource
+UserTransaction utx;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
      * @param request servlet request
-     * @param response servlet response
+     * @param response servlet response1
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userid = request.getParameter("userid");
-        String password = request.getParameter("password");
-        
-        if (userid != null && password != null) {
-            UsersJpaController user =new UsersJpaController(psw, utx);
-            Users u=user.findUsers(userid);
+            MoviesListJpaController moviectrl= new MoviesListJpaController(utx, emf);
+        List<MoviesList> m= moviectrl.findMoviesListEntities();
+        request.setAttribute("MoviesList", m);
+        getServletContext().getRequestDispatcher("/List.jsp").forward(request, response);
+
             
-            if (u != null) {
-                String passwordDB=u.getPassword();
-                if (password.equals(passwordDB)) {
-                    request.getSession().setAttribute("LoggedIn", u);
-                    response.sendRedirect("Ticket");
-                    return;
-                }else{
-                    request.setAttribute("message","Is Invalid");
-                    getServletContext().getRequestDispatcher("/LoginView.jsp").forward(request, response);
-                }
-            }
-            request.setAttribute("message","Is Invalid");
-            getServletContext().getRequestDispatcher("/LoginView.jsp").forward(request, response);
-        }
-        getServletContext().getRequestDispatcher("/LoginView.jsp").forward(request, response);
-//             
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

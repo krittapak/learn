@@ -4,6 +4,7 @@
     Author     : Krittapak
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,9 +15,12 @@
     <body>
         <h1>login</h1>
         <form action="Login" method="post">
-            Username : <input type="text" name="username">
+            User ID : <input type="text" name="userid">
             Password : <input type="password" name="password">
             <input type="submit">
         </form>
+        <c:if test="${message != null}">
+            ${message}
+        </c:if>
     </body>
 </html>
