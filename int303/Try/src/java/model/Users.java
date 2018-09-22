@@ -6,6 +6,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Users.findByUserid", query = "SELECT u FROM Users u WHERE u.userid = :userid")
     , @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username")
     , @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")
-    , @NamedQuery(name = "Users.findByName", query = "SELECT u FROM Users u WHERE u.name = :name")})
+    , @NamedQuery(name = "Users.findByName", query = "SELECT u FROM Users u WHERE u.name = :name")
+    , @NamedQuery(name = "Users.findByActivate", query = "SELECT u FROM Users u WHERE u.activate = :activate")})
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +52,9 @@ public class Users implements Serializable {
     @Size(max = 100)
     @Column(name = "NAME")
     private String name;
+    @Column(name = "ACTIVATE")
+    @Temporal(TemporalType.DATE)
+    private Date activate;
 
     public Users() {
     }
@@ -86,6 +93,14 @@ public class Users implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getActivate() {
+        return activate;
+    }
+
+    public void setActivate(Date activate) {
+        this.activate = activate;
     }
 
     @Override

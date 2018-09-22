@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sit.int303.first.servlet;
+package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,24 +18,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
-import sit.int303.first.jpa.model.Register;
-import sit.int303.first.jpa.model.controller.RegisterJpaController;
-import sit.int303.first.jpa.model.controller.exceptions.RollbackFailureException;
+import jpa.controller.UsersJpaController;
+import jpa.controller.exceptions.RollbackFailureException;
+import model.Users;
 
 /**
  *
- * @author jatawatsafe
+ * @author Krittapak
  */
 public class ActivateServlet extends HttpServlet {
+@PersistenceUnit(unitName = "TryPU")
+EntityManagerFactory emf;
 
-    @PersistenceUnit(unitName = "MyFirstWebAppPU")
-    EntityManagerFactory emf;
-    
-    @Resource
-    UserTransaction utx;
-
+@Resource
+UserTransaction utx;
     /**
-     *
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -46,30 +43,20 @@ public class ActivateServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        String email = request.getParameter("email");
-        String activatekey = request.getParameter("activationkey");
-        if (email != null && activatekey != null) {
-            String message ="Activation Failed";
-            RegisterJpaController regJpaCtrl = new RegisterJpaController(utx, emf);
-            Register reg = regJpaCtrl.findRegister(email);
-            
-            if (activatekey.equals(reg.getActivatekey())) {
-                reg.setActivatedate(new Date());
-                try {
-                    regJpaCtrl.edit(reg);
-                    message = "Congratulation !!! Activation Complete";
-                } catch (RollbackFailureException ex) {
-                    Logger.getLogger(ActivateServlet.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (Exception ex) {
-                    Logger.getLogger(ActivateServlet.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            
-            request.setAttribute("message", message);
-            getServletContext().getRequestDispatcher("/Activation.jsp").forward(request, response);
-        }
-        getServletContext().getRequestDispatcher("/RegisterForm.jsp").forward(request, response);
+        String userid = request.getParameter("userid");
+       
+            request.setAttribute("message", "Activated");
+            UsersJpaController usjpa = new UsersJpaController(utx, emf);
+            Users us = usjpa.findUsers(userid);
+            us.setActivate(new Date());
+    try {
+        usjpa.edit(us);
+    } catch (RollbackFailureException ex) {
+        Logger.getLogger(ActivateServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (Exception ex) {
+        Logger.getLogger(ActivateServlet.class.getName()).log(Level.SEVERE, null, ex);
     }
+            getServletContext().getRequestDispatcher("/activate.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

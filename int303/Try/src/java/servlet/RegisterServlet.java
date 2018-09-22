@@ -64,7 +64,8 @@ public class RegisterServlet extends HttpServlet {
             } catch (Exception ex) {
                 Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
-            getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+            request.setAttribute("User", us);
+            getServletContext().getRequestDispatcher("/activate.jsp").forward(request, response);
         }
         
         getServletContext().getRequestDispatcher("/register.jsp").forward(request, response);

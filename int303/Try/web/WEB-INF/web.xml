@@ -11,6 +11,7 @@
     <filter-mapping>
         <filter-name>CheckLogin</filter-name>
         <servlet-name>MovieListServlet</servlet-name>
+        <servlet-name>ActivateServlet</servlet-name>
         <dispatcher>REQUEST</dispatcher>
         <dispatcher>FORWARD</dispatcher>
     </filter-mapping>
@@ -26,6 +27,10 @@
         <servlet-name>MovieListServlet</servlet-name>
         <servlet-class>servlet.MovieListServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ActivateServlet</servlet-name>
+        <servlet-class>servlet.ActivateServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/Register</url-pattern>
@@ -37,6 +42,10 @@
     <servlet-mapping>
         <servlet-name>MovieListServlet</servlet-name>
         <url-pattern>/MovieList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActivateServlet</servlet-name>
+        <url-pattern>/Activate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
